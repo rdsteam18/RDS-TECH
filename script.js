@@ -1,46 +1,53 @@
 // Chat Functionality
-async function sendChatMessage() {
-    const message = document.getElementById('userMessage').value;
+const { OpenAI } = require('openai');
 
-    const response = await fetch('https://api.aimlapi.com/v1/chat', {
-        method: 'POST',
-        headers: {
-            'Authorization': 'Bearer <YOUR_API_KEY>',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            model: 'gpt-4o',  // Chat model name (can be changed)
-            messages: [
-                { role: 'user', content: message }
-            ],
-            temperature: 0.7
-        })
-    });
+const api = new OpenAI({
+  baseURL: 'https://api.aimlapi.com/v1',
+  apiKey: 'Bearer <YOUR_API_KEY>',
+});
 
-    const data = await response.json();
-    document.getElementById('chatResponse').innerText = data.choices[0].message.content;
+const main = async () => {
+  const result = await api.chat.completions.create({
+    model: 'deepseek-reasoner',
+    messages: [
+      {
+  "role": "user",
+  "content": ""
 }
+    ],
+    temperature: 0.7,
+    top_p: 0.7,
+    frequency_penalty: 1,
+    max_output_tokens: undefined,
+    top_k: 50,
+  });
+
+  const message = result.choices[0].message.content;
+  console.log(`Assistant: ${message}`);
+};
+
+main();
 
 // Image Generation Functionality
-async function generateImage() {
-    const prompt = document.getElementById('imagePrompt').value;
+const main = async () => {
 
-    const response = await fetch('https://api.aimlapi.com/v1/images/generations', {
-        method: 'POST',
-        headers: {
-            'Authorization': 'Bearer 8101d17950054587bcb2a4d1273977dc',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            model: 'dall-e-2',  // Image generation model
-            width: 512,
-            height: 512,
-            seed: 1234,
-            steps: 25
-        })
-    });
+const response = await fetch('https://api.aimlapi.com/v1/images/generations', {
+  method: 'POST',
+  headers: {
+    Authorization: 'Bearer 8101d17950054587bcb2a4d1273977dc',
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+      model: 'dall-e-2',
+      width: 512,
+      height: 512,
+      seed: 37,
+      steps: 25
+  }),
+}).then((res) => res.json());
 
-    const data = await response.json();
-    const imageUrl = data.url;
-    document.getElementById('generatedImage').src = imageUrl;
-}
+console.log('Generation:', response);
+};
+
+main();
+
