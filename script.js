@@ -28,7 +28,7 @@ async function generateImage() {
     const response = await fetch('https://api.aimlapi.com/v1/images/generations', {
         method: 'POST',
         headers: {
-            'Authorization': 'Bearer <YOUR_API_KEY>',
+            'Authorization': 'Bearer 8101d17950054587bcb2a4d1273977dc',
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
