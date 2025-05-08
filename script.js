@@ -6,14 +6,14 @@ const api = new OpenAI({
   apiKey: 'Bearer 8101d17950054587bcb2a4d1273977dc',
 });
 
-const main = async () => {
+const chatFunctionality = async () => {
   const result = await api.chat.completions.create({
     model: 'deepseek-reasoner',
     messages: [
       {
-  "role": "user",
-  "content": ""
-}
+        "role": "user",
+        "content": "Tell me about AI startups."
+      }
     ],
     temperature: 0.7,
     top_p: 0.7,
@@ -26,28 +26,26 @@ const main = async () => {
   console.log(`Assistant: ${message}`);
 };
 
-main();
-
 // Image Generation Functionality
-const main = async () => {
-
-const response = await fetch('https://api.aimlapi.com/v1/images/generations', {
-  method: 'POST',
-  headers: {
-    Authorization: 'Bearer 8101d17950054587bcb2a4d1273977dc',
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({
+const imageGenerationFunctionality = async () => {
+  const response = await fetch('https://api.aimlapi.com/v1/images/generations', {
+    method: 'POST',
+    headers: {
+      Authorization: 'Bearer 8101d17950054587bcb2a4d1273977dc',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
       model: 'dall-e-2',
       width: 512,
       height: 512,
       seed: 37,
       steps: 25
-  }),
-}).then((res) => res.json());
+    }),
+  }).then((res) => res.json());
 
-console.log('Generation:', response);
+  console.log('Image Generation Response:', response);
 };
 
-main();
-
+// Call functions
+chatFunctionality();
+imageGenerationFunctionality();
