@@ -3,7 +3,7 @@ const { OpenAI } = require('openai');
 
 const api = new OpenAI({
   baseURL: 'https://api.aimlapi.com/v1',
-  apiKey: 'Bearer <YOUR_API_KEY>',
+  apiKey: 'Bearer 8101d17950054587bcb2a4d1273977dc',
 });
 
 const main = async () => {
