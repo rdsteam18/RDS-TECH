@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DeepSeek AI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to DeepSeek AI</h1>
+        <nav>
+            <a href="#chat">Chat with AI</a> | 
+            <a href="#image-gen">Generate Image</a>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="chat">
+            <h2>Chat with AI</h2>
+            <textarea id="userMessage" placeholder="Type your message..."></textarea><br>
+            <button onclick="sendChatMessage()">Send</button>
+            <h3>AI Response:</h3>
+            <p id="chatResponse"></p>
+        </section>
+        
+        <section id="image-gen">
+            <h2>Generate AI Image</h2>
+            <input type="text" id="imagePrompt" placeholder="Describe the image you want..."><br>
+            <button onclick="generateImage()">Generate Image</button>
+            <h3>Generated Image:</h3>
+            <img id="generatedImage" src="" alt="Generated Image" style="width: 100%; max-width: 500px;"/>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 DeepSeek AI</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
